@@ -24,7 +24,7 @@ jobs:
       - name: build with the tag
         shell: bash
         run: |
-          RELEASE_VERSION=1.1.0rc4
+          RELEASE_VERSION=1.1.0
           # get tag info for versioning
           mv _version.py monai/
           # version checks
@@ -36,6 +36,7 @@ jobs:
             echo "matched version string"
           else
             echo "unmatched version string, please check the tagging branch."
+            exit 1
           fi
           # remove flake package as it is not needed on hub.docker.com
           sed -i '/flake/d' requirements-dev.txt

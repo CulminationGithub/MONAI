@@ -33,7 +33,6 @@ RUN cp /tmp/requirements.txt /tmp/req.bak \
 COPY LICENSE CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md versioneer.py setup.py setup.cfg runtests.sh MANIFEST.in ./
 COPY tests ./tests
 COPY monai ./monai
-COPY jupyter_notebook_config.py /root/.jupyter/
 RUN BUILD_MONAI=1 FORCE_CUDA=1 python setup.py develop \
   && rm -rf build __pycache__
 
@@ -47,6 +46,7 @@ ENV PATH=${PATH}:/opt/tools:/opt/tools/ngc-cli
 RUN apt-get update \
   && DEBIAN_FRONTEND="noninteractive" apt-get install -y libopenslide0  \
   && rm -rf /var/lib/apt/lists/*
+COPY jupyter_notebook_config.py /root/.jupyter/
 # append /opt/tools to runtime path for NGC CLI to be accessible from all file system locations
 ENV PATH=${PATH}:/opt/tools
 WORKDIR /opt/monai
