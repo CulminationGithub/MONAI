@@ -33,6 +33,7 @@ RUN cp /tmp/requirements.txt /tmp/req.bak \
 COPY LICENSE CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md README.md versioneer.py setup.py setup.cfg runtests.sh MANIFEST.in ./
 COPY tests ./tests
 COPY monai ./monai
+COPY jupyter_notebook_config.py /root/.jupyter/
 RUN BUILD_MONAI=1 FORCE_CUDA=1 python setup.py develop \
   && rm -rf build __pycache__
 
