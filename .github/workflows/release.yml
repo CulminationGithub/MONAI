@@ -36,7 +36,6 @@ jobs:
             echo "matched version string"
           else
             echo "unmatched version string, please check the tagging branch."
-            exit 1
           fi
           # remove flake package as it is not needed on hub.docker.com
           sed -i '/flake/d' requirements-dev.txt
